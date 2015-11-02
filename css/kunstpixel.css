@@ -189,7 +189,7 @@ p {
 
 .pure-button {
     font-family: inherit;
-    font-size: 100%;
+    font-size: 80%;
     padding: 0.5em 1em;
     color: #444; /* rgba not supported (IE 8) */
     color: rgba(0, 0, 0, 0.80); /* rgba supported */

@@ -61,7 +61,7 @@
         Hamburg </p>
 
     <p>E-Mail: <a href="mailto:marc@kunstpixel.de">marc@kunstpixel.de</a></p>
-    <p></p>
+    <p>Kunstpixel is powered by <a href="https://github.com/MarcDK/freimaurer">freimaurer</a>. A simple php and js image gallery mash-up.</p>
 </div>
 
 </body>
