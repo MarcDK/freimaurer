@@ -145,6 +145,8 @@ class generateGallery
 
         $html = '<ul style="display: none;" class="grid">';
 
+        $i = 0;
+
         foreach ($img_array as $key => $elem) {
             if (is_array($elem)) {
 
@@ -154,11 +156,10 @@ class generateGallery
 
                     $filename_ext = $path_parts['extension'];
                     $filename = $path_parts['filename'];
-
                     $item = "\n";
                     $item .= '<li class="element-item all ' . $this->toAscii($key) . '" data-category="' .  $this->toAscii($key) . '">';
                     $item .= "\n";
-                    $item .= '<a title="' . $key . '" data-category="' . $this->toAscii($key) . '" rel="all" class="gallery" href="/gallery/' . $key . '/' . $img_filename . '">';
+                    $item .= '<a data-size="1920x1080" data-index="' . $i . '" title="' . $key . '" data-category="' . $this->toAscii($key) . '" rel="all" class="gallery" href="/gallery/' . $key . '/' . $img_filename . '">';
                     $item .= "\n";
                     $item .= '<span class="sprite fullscreenicon">' . $key . '</span>';
                     $item .= "\n";
@@ -169,6 +170,8 @@ class generateGallery
                     $item .= '</li>';
 
                     $array_img_list[] = $item;
+
+                    $i++;
                 }
 
             }

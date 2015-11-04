@@ -68,7 +68,6 @@ a:hover {
     height: 75px;
     width: 320px;
     background-size: 320px;
-    margin-left: 20px;
 }
 
 
@@ -93,8 +92,7 @@ h1 {
 
 .grid,
 nav.button-group {
-    margin-left: 20px;
-    margin-bottom: 20px;
+    margin-left: 10px;
 }
 
 ul {
@@ -156,6 +154,10 @@ html .button.pure-button-active {
 }
 
 p {
+    margin-bottom: 1em;
+}
+
+.button-group {
     margin-bottom: 1em;
 }
 

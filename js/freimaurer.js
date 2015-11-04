@@ -14,6 +14,62 @@ var filterFns = {
     }
 };
 
+var getItems = function () {
+    var pic_objs = [];
+
+    $.each($(".grid img:visible"), function (key, img) {
+
+        $(img).parent().attr('data-index',key);
+
+
+        var href = $(img).parent().attr('href'),
+            size = $(img).parent().data('size').split('x'),
+            title = $(img).parent().attr("title"),
+            width = size[0],
+            height = size[1],
+            img_src = $(img).attr("src");
+
+        var pic_obj = {
+            src: href,
+            title: title,
+            w: width,
+            h: height,
+            msrc: img_src
+        }
+
+        pic_objs.push(pic_obj);
+    });
+
+    return pic_objs;
+}
+
+var openGallery = function (elem) {
+
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+
+    var items = getItems();
+
+    var index =  $(elem).data("index");
+
+    var options = {
+        index: parseInt(index),
+        getThumbBoundsFn: function(index) {
+            var thumbnail = $(elem).find("img")[0],
+                pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
+                rect = thumbnail.getBoundingClientRect();
+
+            return {x:rect.left, y:rect.top + pageYScroll, w:rect.width};
+        }
+    };
+
+
+
+    var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+    gallery.init();
+}
+
+
+
 function getHashFilter() {
     // get filter=filterName
     var matches = location.hash.match(/c=([^&]+)/i);
@@ -44,7 +100,7 @@ $(function () {
             } else if (w > 600) {
                 columnNum = 2;
             } else if (w > 300) {
-                columnNum = 1;
+                columnNum = 2;
             }
             columnWidth = Math.floor(w / columnNum);
             $grid.find('.element-item').each(function () {
@@ -65,8 +121,8 @@ $(function () {
     function onHashchange() {
         var hashFilter = getHashFilter();
 
-        if(hashFilter != null){
-            hashFilter =  '.' + hashFilter;
+        if (hashFilter != null) {
+            hashFilter = '.' + hashFilter;
         }
 
         if (!hashFilter && isIsotopeInit) {
@@ -93,18 +149,10 @@ $(function () {
             $("img.lazy").unveil();
         });
 
-        $(".element-item a").on('click', function () {
-            var current_cat = $filterButtonGroup.find('.pure-button-active').data("filter");
-
-            $.each( $(".grid img:visible"), function( key, value ) {
-                $(value).parent().attr("rel",current_cat);
-            });
-        });
-
         // set selected class on button
         if (hashFilter) {
             $filterButtonGroup.find('.pure-button-active').removeClass('pure-button-active');
-            $filterButtonGroup.find('[data-filter="' + hashFilter.replace('.','') + '"]').addClass('pure-button-active');
+            $filterButtonGroup.find('[data-filter="' + hashFilter.replace('.', '') + '"]').addClass('pure-button-active');
         }
     }
 
@@ -115,14 +163,16 @@ $(function () {
 
 });
 
-$(document).ready(function(){
+
+$(document).ready(function () {
     //Examples of how to assign the Colorbox event to elements
-    $(".gallery").colorbox({
-        scalePhotos:true,
-        maxWidth: "98%",
-        maxHeight: "95%",
-        opacity: 0.95
+
+    $(".grid a").on('click', function (event) {
+        event.preventDefault();
+
+        openGallery(this);
     });
+
 
     $("img.lazy").unveil();
 
