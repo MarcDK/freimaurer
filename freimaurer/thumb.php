@@ -8,7 +8,7 @@ Twitter:    @jamiebicknell
 */
 
 define('THUMB_CACHE',           './cache/');    // Path to cache directory (must be writeable)
-define('THUMB_CACHE_AGE',       86400);         // Duration of cached files in seconds
+define('THUMB_CACHE_AGE',       604800);         // Duration of cached files in seconds
 define('THUMB_BROWSER_CACHE',   true);          // Browser cache true or false
 define('SHARPEN_MIN',           12);            // Minimum sharpen value
 define('SHARPEN_MAX',           28);            // Maximum sharpen value

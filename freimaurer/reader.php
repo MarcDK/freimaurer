@@ -152,11 +152,9 @@ class generateGallery
                     $item .= "\n";
                     $item .= '<a data-size="1920x1080" data-index="' . $i . '" title="' . $key . '" data-category="' . $this->toAscii($key) . '" rel="all" class="gallery" href="' . $img_path . '">';
                     $item .= "\n";
-                    $item .= '<span class="sprite fullscreenicon">' . $key . '</span>';
-                    $item .= "\n";
                     $item .= '<img width="265" height="150" src="/freimaurer/css/loading.png" class="lazy"
-                    data-src="/freimaurer/thumb.php?src=' . $img_path . '&size=x400"
-                    data-src-retina="/freimaurer/thumb.php?src=' . $img_path . '&size=x800">';
+                    data-src="/freimaurer/thumb.php?src=' . $img_path . '&size=300x"
+                    data-src-retina="/freimaurer/thumb.php?src=' . $img_path . '&size=600x">';
                     $item .= "\n";
                     $item .= '</a>';
                     $item .= "\n";

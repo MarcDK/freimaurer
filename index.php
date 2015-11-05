@@ -4,17 +4,25 @@
     <meta charset="utf-8"/>
     <title>kunstpixel.de</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <!-- needed for mobile devices -->
-    <!-- STYLE FOR FOR THE PLUGIN-->
-    <link rel="stylesheet" href="/css/kunstpixel.css"/>
-    <!-- scripts at bottom of page -->
-    <meta property="og:locale" content="de_DE"/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:title" content="Kunstpixel.de"/>
-    <meta property="og:description" content="A beautiful Playstation 4 screenshot gallery."/>
-    <meta property="og:url" content="http://kunstpixel.de"/>
-    <meta property="og:site_name" content="KUNSTPIXEL"/>
-    <meta property="og:image" content="http://kunstpixel.de/apple-icon.png"/>
+    <link rel="stylesheet" href="/freimaurer/css/kunstpixel.css"/>
+
+    <!-- jquery  -->
+    <script type="text/javascript" src='/freimaurer/js/jquery.min.js'></script>
+
+    <!-- unveil  -->
+    <script type="text/javascript" src='/freimaurer/js/jquery.unveil.min.js'></script>
+
+    <!-- isotope  -->
+    <script type="text/javascript" src='/freimaurer/js/isotope.pkgd.min.js'></script>
+
+    <!-- photoswipe -->
+    <script type="text/javascript" src='/freimaurer/js/photoswipe/photoswipe.min.js'></script>
+    <script type="text/javascript" src='/freimaurer/js/photoswipe/photoswipe-ui-default.min.js'></script>
+    <link rel="stylesheet" href="/freimaurer/js/photoswipe/default-skin/default-skin.css"/>
+    <link rel="stylesheet" href="/freimaurer/js/photoswipe/photoswipe.css"/>
+
 </head>
 <body>
 <script>
@@ -29,21 +37,11 @@
 </script>
 <div id="header"><a href="/"><h1>Kunstpixel.de</h1></a></div>
 
-<!-- jquery  -->
-<script type="text/javascript" src='/js/jquery.min.js'></script>
-<!-- unveil  -->
-<script type="text/javascript" src='/js/jquery.unveil.min.js'></script>
-<!-- isotope  -->
-<script type="text/javascript" src='/js/isotope.pkgd.min.js'></script>
-<!-- photoswipe -->
-<script type="text/javascript" src='/js/photoswipe/photoswipe.min.js'></script>
-<script type="text/javascript" src='/js/photoswipe/photoswipe-ui-default.min.js'></script>
-<link rel="stylesheet" href="/js/photoswipe/default-skin/default-skin.css"/>
-<link rel="stylesheet" href="/js/photoswipe/photoswipe.css"/>
-<!-- freimaurer -->
-<script type="text/javascript" src='/js/freimaurer.js'></script>
 
-<?php include('reader.php'); ?>
+<!-- freimaurer -->
+<script type="text/javascript" src='/freimaurer/freimaurer-init.js'></script>
+
+<?php include('freimaurer/reader.php'); ?>
 
 <p class="grid">
 <noscript>

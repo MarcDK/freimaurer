@@ -106,8 +106,10 @@ $(function () {
             var w = $grid.width(),
                 columnNum = 1,
                 columnWidth = 0;
-            if (w > 1200) {
-                columnNum = 4;
+            if (w > 1600) {
+                columnNum = 6;
+            } else if (w > 1200) {
+                columnNum = 5;
             } else if (w > 900) {
                 columnNum = 3;
             } else if (w > 600) {
@@ -159,8 +161,9 @@ $(function () {
         });
 
         $grid.on('layoutComplete', function () {
-            $("img.lazy").unveil();
+            $(".grid img.lazy").unveil();
         });
+        console.debug(1);
 
         // set selected class on button
         if (hashFilter) {
@@ -185,7 +188,7 @@ $(document).ready(function () {
         openGallery(this);
     });
 
-    $("img.lazy").unveil();
+    $(".grid img.lazy").unveil();
 
 });
 

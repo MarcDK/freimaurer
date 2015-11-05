@@ -120,29 +120,6 @@ li {
 
 }
 
-.element-item a {
-    position: relative;
-}
-
-.element-item a span {
-    left: 0;
-    transition: all 0.2s ease 0s;
-    position: absolute;
-    padding: 4px;
-    color: white;
-    opacity: 0;
-    font-size: 20px;
-    text-shadow: 0px 0px 4px #000;
-
-}
-
-.element-item a:hover span {
-    left: 0;
-    opacity: 1;
-    display: block;
-
-}
-
 .button {
     margin-right: 5px;
     margin-bottom: 4px;
@@ -201,6 +178,13 @@ p {
     text-decoration: none;
     border-radius: 2px;
 }
+
+@media screen and (min-width: 1280px) {
+    .pure-button{
+        font-size: 100%;
+    }
+}
+
 
 .pure-button-hover,
 .pure-button:hover,
