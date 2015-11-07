@@ -2,7 +2,7 @@
 
 A responsive onepage gallery based on PHP and javascript.
 
-# Demo
+## Demo
 
 You can see the script in action [here](http://kunstpixel.de/freimaurer_demo/)
 
