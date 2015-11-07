@@ -1,13 +1,24 @@
 <?php
 
-class generateGallery
+/*
+
+Freimaurer
+
+Generate gallery html and nav html from images in /gallery folder.
+
+Author: Marc Tönsing
+
+*/
+
+class Freimaurer
 {
     private $imgTypes = array('jpeg', 'jpg', 'png', 'gif'); // The extensions of Images that the plugin will read
     private $directory = "gallery";
     private $categoriesOrder = "byName"; //byDate, byDateReverse, byName, byNameReverse, random
     private $imagesOrder = "random"; //byDate, byDateReverse, byName, byNameReverse, random
+    private $output;
 
-    public function toAscii($str, $replace = array(), $delimiter = '-')
+    private function toAscii($str, $replace = array(), $delimiter = '-')
     {
         if (!empty($replace)) {
             $str = str_replace((array)$replace, ' ', $str);
@@ -21,7 +32,7 @@ class generateGallery
         return $clean;
     }
 
-    public function getFoldersList($directory)
+    private function getFoldersList($directory)
     {
         $categoriesOrder = $this->categoriesOrder;
         if (!is_dir($directory)) {//If the parameter is a directory if not then just return
@@ -51,7 +62,7 @@ class generateGallery
         return $results;
     }
 
-    public function getImagesList($directory)
+    private function getImagesList($directory)
     {
 
         $imagesOrder = $this->imagesOrder;
@@ -92,7 +103,7 @@ class generateGallery
     }
 
 
-    public function fixArray($list, $directory)
+    private function fixArray($list, $directory)
     {
 
         $return = array();
@@ -107,7 +118,7 @@ class generateGallery
         return $return;
     }
 
-    public function generateNavigation($img_array)
+    private function generateNavigation($img_array)
     {
 
         $folder_names = array_keys($img_array);
@@ -133,7 +144,7 @@ class generateGallery
     }
 
 
-    public function generateImageGrid($img_array)
+    private function generateImageGrid($img_array)
     {
 
         $html = '<ul style="display: none;" class="grid">';
@@ -145,14 +156,14 @@ class generateGallery
 
                 foreach ($elem as $img_filename => $elem) {
 
-                    $img_path = './../gallery/' . $key . '/' .$img_filename;
+                    $img_path = './../gallery/' . $key . '/' . $img_filename;
 
                     $item = "\n";
-                    $item .= '<li class="element-item all ' . $this->toAscii($key) . '" data-category="' .  $this->toAscii($key) . '">';
+                    $item .= '<li class="element-item all ' . $this->toAscii($key) . '" data-category="' . $this->toAscii($key) . '">';
                     $item .= "\n";
                     $item .= '<a data-size="1920x1080" data-index="' . $i . '" title="' . $key . '" data-category="' . $this->toAscii($key) . '" rel="all" class="gallery" href="' . $img_path . '">';
                     $item .= "\n";
-                    $item .= '<img width="265" height="150" src="/freimaurer/css/loading.png" class="lazy"
+                    $item .= '<img width="265" height="150" src="/freimaurer/img/loading.png" class="lazy"
                     data-src="/freimaurer/thumb.php?src=' . $img_path . '&size=300x"
                     data-src-retina="/freimaurer/thumb.php?src=' . $img_path . '&size=600x">';
                     $item .= "\n";
@@ -202,14 +213,99 @@ class generateGallery
             $output[$value] = $this->fixArray($images, $directory . '/' . $value);
         }
 
-        $nav = $this->generateNavigation($output);
-        echo $nav;
 
-        $gallery = $this->generateImageGrid($output);
-        echo $gallery;
+        $this->output = $output;
+    }
 
+    public function getPhotoSwipeHTML()
+    {
+        $html = '
+        <!-- Root element of PhotoSwipe. Must have class pswp. -->
+        <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+            <!-- Background of PhotoSwipe.
+                 It\'s a separate element as animating opacity is faster than rgba(). -->
+            <div class="pswp__bg"></div>
+
+            <!-- Slides wrapper with overflow:hidden. -->
+            <div class="pswp__scroll-wrap">
+
+                <!-- Container that holds slides.
+                    PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                    Don\'t modify these 3 pswp__item elements, data is added later on. -->
+                <div class="pswp__container">
+                    <div class="pswp__item"></div>
+                    <div class="pswp__item"></div>
+                    <div class="pswp__item"></div>
+                </div>
+
+                <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+                <div class="pswp__ui pswp__ui--hidden">
+
+                    <div class="pswp__top-bar">
+
+                        <!--  Controls are self-explanatory. Order can be changed. -->
+
+                        <div class="pswp__counter"></div>
+
+                        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                        <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                        <!-- element will get class pswp__preloader--active when preloader is running -->
+                        <div class="pswp__preloader">
+                            <div class="pswp__preloader__icn">
+                                <div class="pswp__preloader__cut">
+                                    <div class="pswp__preloader__donut"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                        <div class="pswp__share-tooltip"></div>
+                    </div>
+
+                    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+                    </button>
+
+                    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+                    </button>
+
+                    <div class="pswp__caption">
+                        <div class="pswp__caption__center"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>';
+
+        return $html;
+    }
+
+    public function getGalleryNav()
+    {
+
+        $nav = $this->generateNavigation($this->output);
+
+        return $nav;
+    }
+
+    public function getGallery()
+    {
+
+        $gallery = $this->generateImageGrid($this->output);
+
+        return $gallery;
     }
 
 }
 
-new generateGallery();
+

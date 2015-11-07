@@ -1,0 +1,23 @@
+.grid {
+    overflow: hidden;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+.element-item {
+    margin-bottom: 33px;
+}
+
+.element-item img {
+    height: auto;
+    width: 95%;
+    box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.50);
+}
+
