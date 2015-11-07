@@ -2,6 +2,10 @@
 
 A responsive onepage gallery based on PHP and javascript.
 
+# Demo
+
+You can see the script in action [here](http://kunstpixel.de/freimaurer_demo/)
+
 ## Installation
 
 1. Make the folder /freimaurer/cache writeable.

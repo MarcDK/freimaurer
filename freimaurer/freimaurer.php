@@ -12,6 +12,7 @@ Author: Marc Tönsing
 
 class Freimaurer
 {
+    private $path = '/freimaurer_demo'; // The location of freimaurer on the server
     private $imgTypes = array('jpeg', 'jpg', 'png', 'gif'); // The extensions of Images that the plugin will read
     private $directory = "gallery";
     private $categoriesOrder = "byName"; //byDate, byDateReverse, byName, byNameReverse, random
@@ -154,20 +155,27 @@ class Freimaurer
 
         $i = 0;
 
+
+        $path = $_SERVER['REQUEST_URI'];
+
+
         foreach ($img_array as $key => $elem) {
             if (is_array($elem)) {
 
                 foreach ($elem as $img_filename => $elem) {
 
-                    $img_path = './../gallery/' . $key . '/' . $img_filename;
+                    $img_path = './../' . $path . 'gallery/' . $key . '/' . $img_filename;
+                    $img_path_thumb = './../' . 'gallery/' . $key . '/' . $img_filename;
                     $img_size = getimagesize('gallery/' . $key . '/' . $img_filename);
                     $org_width = $img_size[0];
                     $org_height = $img_size[1];
 
-                    $big_img = $img_path;
 
-                    if($org_width != 1920 && $org_height != 1080) {
-                        $big_img =  '/freimaurer/thumb.php?src=' . $img_path . '&size=1920x1080crop=1';
+
+                    if($org_width == 1920 && $org_height == 1080) {
+                        $big_img = $img_path;
+                    } else {
+                        $big_img =  $path . 'freimaurer/thumb.php?src=' . $img_path_thumb . '&size=1920x1080crop=1';
                     }
 
                     $item = "\n";
@@ -176,9 +184,9 @@ class Freimaurer
                     $item .= '<a data-size="1920x1080" data-index="' . $i . '" title="' . $key . '"
                     data-category="' . $this->toAscii($key) . '" rel="all" class="gallery" href="' . $big_img . '">';
                     $item .= "\n";
-                    $item .= '<img width="265" height="150" src="/freimaurer/img/loading.png" class="lazy"
-                    data-src="/freimaurer/thumb.php?src=' . $img_path . '&size=300x168?crop=1"
-                    data-src-retina="/freimaurer/thumb.php?src=' . $img_path . '&size=600x337?crop=1">';
+                    $item .= '<img width="265" height="150" src="freimaurer/img/loading.png" class="lazy"
+                    data-src="' . $path . 'freimaurer/thumb.php?src=' . $img_path_thumb . '&size=300x168?crop=1"
+                    data-src-retina="' . $path . 'freimaurer/thumb.php?src=' . $img_path_thumb . '&size=600x337?crop=1">';
                     $item .= "\n";
                     $item .= '</a>';
                     $item .= "\n";
