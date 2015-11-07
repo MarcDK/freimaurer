@@ -20,7 +20,7 @@
 function getItems() {
     var items = [];
 
-    $.each($(".grid img:visible"), function (key, img) {
+    $.each($(".freimaurer img:visible"), function (key, img) {
 
         $(img).parent().attr('data-index', key);
 
@@ -116,7 +116,7 @@ function colWidth(grid) {
 var isIsotopeInit = false;
 
 function onHashchange() {
-    var grid = $('.grid');
+    var grid = $('.freimaurer');
     var hashFilter = getHashFilter();
 
     if (hashFilter != null) {
@@ -131,7 +131,7 @@ function onHashchange() {
     // filter isotope
 
     grid.show();
-    $(".button-group").show();
+    $(".freimaurer-nav").show();
 
     grid.isotope({
         itemSelector: '.element-item',
@@ -143,13 +143,13 @@ function onHashchange() {
     });
 
     grid.on('layoutComplete', function () {
-        $(".grid img.lazy:visible").unveil();
+        $(".freimaurer img.lazy:visible").unveil();
     });
-    var filterButtonGroup = $('.filter-button-group');
+    var filterButtonGroup = $('.freimaurer-nav ul');
     // set selected class on button
     if (hashFilter) {
-        filterButtonGroup.find('.pure-button-active').removeClass('pure-button-active');
-        filterButtonGroup.find('[data-filter="' + hashFilter.replace('.', '') + '"]').addClass('pure-button-active');
+        filterButtonGroup.find('.active').removeClass('active');
+        filterButtonGroup.find('[data-filter="' + hashFilter.replace('.', '') + '"]').addClass('active');
     }
 
 }
@@ -157,8 +157,8 @@ function onHashchange() {
 $(document).ready(function () {
 
 // bind filter button click
-    var filterButtonGroup = $('.filter-button-group');
-    filterButtonGroup.on('click', 'button', function () {
+    var filterButtonGroup = $('.freimaurer-nav ul');
+    filterButtonGroup.on('click', 'a', function () {
 
         var filterAttr = $(this).attr('data-filter');
         // set filter in hash
@@ -172,12 +172,28 @@ $(document).ready(function () {
 
     onHashchange();
 
-    $(".grid a").on('click', function (event) {
+    $(".freimaurer a").on('click', function (event) {
         event.preventDefault();
         openGallery(this);
     });
 
-    $(".grid img.lazy:visible").unveil();
+    $(".freimaurer img.lazy").unveil();
+
+    var navigation = responsiveNav(".nav-collapse", {
+        animate: true,                    // Boolean: Use CSS3 transitions, true or false
+        transition: 284,                  // Integer: Speed of the transition, in milliseconds
+        label: "Menu",                    // String: Label for the navigation toggle
+        insert: "before",                  // String: Insert the toggle before or after the navigation
+        customToggle: "",                 // Selector: Specify the ID of a custom toggle
+        closeOnNavClick: false,           // Boolean: Close the navigation when one of the links are clicked
+        openPos: "relative",              // String: Position of the opened nav, relative or static
+        navClass: "nav-collapse",         // String: Default CSS class. If changed, you need to edit the CSS too!
+        navActiveClass: "js-nav-active",  // String: Class that is added to <html> element when nav is active
+        jsClass: "js",                    // String: 'JS enabled' class which is added to <html> element
+        init: function(){},               // Function: Init callback
+        open: function(){},               // Function: Open callback
+        close: function(){}               // Function: Close callback
+    });
 });
 
 

@@ -123,22 +123,25 @@ class Freimaurer
 
         $folder_names = array_keys($img_array);
         $i = true;
-        $html = '<nav style="display:none;" class="button-group filter-button-group">';
-
+        $html = '<div class="nav-wrapper">';
+        $html .= '<nav id="nav" class="freimaurer-nav nav-collapse" style="display:none;">';
+        $html .= '<ul>';
         foreach ($folder_names as $folder_name) {
 
             $folder_name_slug = $this->toAscii($folder_name);
 
             if ($i) {
-                $html .= '<button class="pure-button button pure-button-active" data-filter="' . $folder_name_slug . '">' . $folder_name . '</button>';
+                $html .= '<li><a class="active" data-filter="' . $folder_name_slug . '">' . $folder_name . '</a></li>';
             } else {
-                $html .= '<button class="pure-button button" data-filter="' . $folder_name_slug . '">' . $folder_name . '</button>';
+                $html .= '<li><a class="" data-filter="' . $folder_name_slug . '">' . $folder_name . '</a></li>';
             }
 
             $i = false;
         }
-
+        $html .= '</ul>';
         $html .= '</nav>';
+        $html .= '</div>';
+
 
         return $html;
     }
@@ -147,7 +150,7 @@ class Freimaurer
     private function generateImageGrid($img_array)
     {
 
-        $html = '<ul style="display: none;" class="grid">';
+        $html = '<ul style="display: none;" class="freimaurer">';
 
         $i = 0;
 
@@ -157,15 +160,25 @@ class Freimaurer
                 foreach ($elem as $img_filename => $elem) {
 
                     $img_path = './../gallery/' . $key . '/' . $img_filename;
+                    $img_size = getimagesize('gallery/' . $key . '/' . $img_filename);
+                    $org_width = $img_size[0];
+                    $org_height = $img_size[1];
+
+                    $big_img = $img_path;
+
+                    if($org_width != 1920 && $org_height != 1080) {
+                        $big_img =  '/freimaurer/thumb.php?src=' . $img_path . '&size=1920x1080crop=1';
+                    }
 
                     $item = "\n";
                     $item .= '<li class="element-item all ' . $this->toAscii($key) . '" data-category="' . $this->toAscii($key) . '">';
                     $item .= "\n";
-                    $item .= '<a data-size="1920x1080" data-index="' . $i . '" title="' . $key . '" data-category="' . $this->toAscii($key) . '" rel="all" class="gallery" href="' . $img_path . '">';
+                    $item .= '<a data-size="1920x1080" data-index="' . $i . '" title="' . $key . '"
+                    data-category="' . $this->toAscii($key) . '" rel="all" class="gallery" href="' . $big_img . '">';
                     $item .= "\n";
                     $item .= '<img width="265" height="150" src="/freimaurer/img/loading.png" class="lazy"
-                    data-src="/freimaurer/thumb.php?src=' . $img_path . '&size=300x"
-                    data-src-retina="/freimaurer/thumb.php?src=' . $img_path . '&size=600x">';
+                    data-src="/freimaurer/thumb.php?src=' . $img_path . '&size=300x168?crop=1"
+                    data-src-retina="/freimaurer/thumb.php?src=' . $img_path . '&size=600x337?crop=1">';
                     $item .= "\n";
                     $item .= '</a>';
                     $item .= "\n";

@@ -171,8 +171,9 @@ if (!file_exists($file_temp)) {
         }
     }
     list($w,$h) = explode('x', str_replace('<', '', $size) . 'x');
-    $w = ($w != '') ? floor(max(8, min(1500, $w))) : '';
-    $h = ($h != '') ? floor(max(8, min(1500, $h))) : '';
+    $w = ($w != '') ? floor(max(8, min(5500, $w))) : '';
+    $h = ($h != '') ? floor(max(8, min(5500, $h))) : '';
+
     if (strstr($size, '<')) {
         $h = $w;
         $crop = 0;
@@ -221,6 +222,8 @@ if (!file_exists($file_temp)) {
     $y = strpos($align, 't') !== false ? 0 : (strpos($align, 'b') !== false ? $h - $h1 : ($h - $h1) / 2);
     $im = imagecreatetruecolor($w, $h);
     $bg = imagecolorallocate($im, 255, 255, 255);
+
+
     imagefill($im, 0, 0, $bg);
     switch ($type) {
         case 1:
