@@ -143,6 +143,7 @@ function onHashchange() {
     });
 
     grid.on('layoutComplete', function () {
+        $(window).off("unveil");
         $(".freimaurer img.lazy:visible").unveil();
     });
     var filterButtonGroup = $('.freimaurer-nav ul');
