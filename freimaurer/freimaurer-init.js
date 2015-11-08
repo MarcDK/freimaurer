@@ -165,7 +165,7 @@ $(document).ready(function () {
 
         location.hash = 'c=' + encodeURIComponent(filterAttr);
     });
-    
+
     $(window).on('hashchange', onHashchange);
     $(window).on('resize', onHashchange);
 

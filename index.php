@@ -25,9 +25,7 @@
 
     <!-- responsive nav -->
     <script type="text/javascript" src='https://cdn.jsdelivr.net/responsive-nav/1.0.39/responsive-nav.min.js'></script>
-    <link rel="stylesheet" href="freimaurer/js/responsive-nav/responsive-nav.css"/>
-    <link rel="stylesheet" href="freimaurer/css/responsive-nav-theme.css"/>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/responsive-nav/1.0.39/responsive-nav.css"/>
 
     <!-- freimaurer -->
     <script type="text/javascript" src='freimaurer/freimaurer-init.js'></script>
