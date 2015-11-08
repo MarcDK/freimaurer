@@ -96,6 +96,14 @@ article.license {
     background: #C6E4FD;
 }
 
+article:nth-child(odd) {
+    background:  #C6E4FD;
+}
+
+article:nth-child(even) {
+    background: #fff;
+}
+
 
 /*   ----------- */
 /* ------------------------------------------
