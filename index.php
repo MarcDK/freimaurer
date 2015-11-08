@@ -9,22 +9,22 @@
     <link rel="stylesheet" href="freimaurer/css/freimaurer.css"/>
 
     <!-- jquery  -->
-    <script type="text/javascript" src='freimaurer/js/jquery.min.js'></script>
+    <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js'></script>
 
     <!-- unveil  -->
-    <script type="text/javascript" src='freimaurer/js/jquery.unveil.min.js'></script>
+    <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/unveil/1.3.0/jquery.unveil.min.js'></script>
 
     <!-- isotope  -->
-    <script type="text/javascript" src='freimaurer/js/isotope.pkgd.min.js'></script>
+    <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js'></script>
 
     <!-- photoswipe -->
-    <script type="text/javascript" src='freimaurer/js/photoswipe/photoswipe.min.js'></script>
-    <script type="text/javascript" src='freimaurer/js/photoswipe/photoswipe-ui-default.min.js'></script>
-    <link rel="stylesheet" href="freimaurer/js/photoswipe/default-skin/default-skin.css"/>
-    <link rel="stylesheet" href="freimaurer/js/photoswipe/photoswipe.css"/>
+    <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.0/photoswipe.min.js'></script>
+    <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.0/photoswipe-ui-default.min.js'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.0/default-skin/default-skin.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.0/photoswipe.css"/>
 
     <!-- responsive nav -->
-    <script type="text/javascript" src='freimaurer/js/responsive-nav/responsive-nav.js'></script>
+    <script type="text/javascript" src='https://cdn.jsdelivr.net/responsive-nav/1.0.39/responsive-nav.min.js'></script>
     <link rel="stylesheet" href="freimaurer/js/responsive-nav/responsive-nav.css"/>
     <link rel="stylesheet" href="freimaurer/css/responsive-nav-theme.css"/>
 
@@ -39,6 +39,8 @@
     <h1><a href="/">Freimaurer Demo</a></h1>
 </div>
 
+<!--- Freimaurer ---->
+
 <?php
 include('freimaurer/freimaurer.php');
 $maurer = new Freimaurer();
@@ -48,6 +50,7 @@ $maurer = new Freimaurer();
 
 <?php echo $maurer->getGallery(); ?>
 
+<!--- /Freimaurer ---->
 
 <noscript>
     please enable javascript in your browser.
@@ -98,7 +101,7 @@ $maurer = new Freimaurer();
     </article>
 </section>
 
-
+<!--- Freimaurer PhotoSwipe HTML ---->
 <?php echo $maurer->getPhotoSwipeHTML(); ?>
 </body>
 </html>

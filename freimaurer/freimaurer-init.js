@@ -165,8 +165,7 @@ $(document).ready(function () {
 
         location.hash = 'c=' + encodeURIComponent(filterAttr);
     });
-
-
+    
     $(window).on('hashchange', onHashchange);
     $(window).on('resize', onHashchange);
 
@@ -176,8 +175,6 @@ $(document).ready(function () {
         event.preventDefault();
         openGallery(this);
     });
-
-    $(".freimaurer img.lazy").unveil();
 
     var navigation = responsiveNav(".nav-collapse", {
         animate: true,                    // Boolean: Use CSS3 transitions, true or false
@@ -194,6 +191,9 @@ $(document).ready(function () {
         open: function(){},               // Function: Open callback
         close: function(){}               // Function: Close callback
     });
+
+    $(".freimaurer img.lazy").unveil();
+
 });
 
 

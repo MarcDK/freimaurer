@@ -40,12 +40,12 @@ li {
 .element-item img {
     height: auto;
     width: 95%;
-    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.50);
 }
 
 article {
     text-align: center;
     min-height: 400px;
+    padding: 2em 0;
 }
 
 article ul,
@@ -83,7 +83,7 @@ article ol li {
 }
 
 article h2 {
-    padding-top: 2em;
+    padding-top: 1em;
     font-size: 250%;
     text-transform: uppercase;
 }
