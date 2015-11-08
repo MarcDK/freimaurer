@@ -9,6 +9,12 @@ a {
     color: #0068bf;
 }
 
+.freimaurer {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
 #header,
 .freimaurer {
     margin-left: 10px;
@@ -22,14 +28,6 @@ a {
     cursor: pointer;
 }
 
-.freimaurer {
-    overflow: hidden;
-}
-
-ul {
-    margin: 0;
-    padding: 0;
-}
 
 li {
     list-style-type: none;
@@ -50,18 +48,14 @@ article {
     min-height: 400px;
 }
 
-article p,
-article ul,
-article ol {
-    font-size: 120%;
-}
-
 article ul,
 article ol,
 article p {
+    font-size: 120%;
     margin: auto;
     width: 90%;
     text-align: left;
+    margin-bottom: 1em;
 
 }
 
@@ -71,6 +65,7 @@ article p {
         margin: auto;
         width: 40%;
         text-align: left;
+        margin-bottom: 1em;
     }
 
     article p {

@@ -82,8 +82,9 @@ $maurer = new Freimaurer();
             <li><a href="http://luis-almeida.github.io/unveil/">unveil</a> - image lazy loading</li>
             <li><a href="http://github.com/jamiebicknell/Thumb">Thumb</a> - thumbnail generation</li>
             <li><a href="http://responsive-nav.com">responsive nav</a> - the hamburger menu</li>
-
         </ul>
+
+        <p>demo photo credits: copyright by <a href="http://marc.tv">Marc Tönsing</a>.</p>
     </article>
     <article class="download">
         <h2>Download</h2>
