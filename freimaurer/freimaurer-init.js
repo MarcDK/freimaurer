@@ -99,12 +99,12 @@ function colWidth(grid) {
     columnWidth = Math.floor(w / columnNum);
 
     grid.find('.element-item').each(function () {
-        var $item = $(this),
-            multiplier_w = $item.attr('class').match(/item-w(\d)/),
-            multiplier_h = $item.attr('class').match(/item-h(\d)/),
+        var item = $(this),
+            multiplier_w = item.attr('class').match(/item-w(\d)/),
+            multiplier_h = item.attr('class').match(/item-h(\d)/),
             width = multiplier_w ? columnWidth * multiplier_w[1] - 4 : columnWidth - 4,
             height = multiplier_h ? columnWidth * multiplier_h[1] * 0.5 - 4 : columnWidth * 0.5 - 4;
-        $item.css({
+        item.css({
             width: width,
             height: height
         });
@@ -130,9 +130,6 @@ function onHashchange() {
     isIsotopeInit = true;
     // filter isotope
 
-    grid.show();
-    $(".freimaurer-nav").show();
-
     grid.isotope({
         itemSelector: '.element-item',
         masonry: {
@@ -144,8 +141,9 @@ function onHashchange() {
 
     grid.on('layoutComplete', function () {
         $(window).off("unveil");
-        $(".freimaurer img.lazy:visible").unveil();
+        $(".freimaurer img.lazy").unveil();
     });
+
     var filterButtonGroup = $('.freimaurer-nav ul');
     // set selected class on button
     if (hashFilter) {
@@ -157,7 +155,10 @@ function onHashchange() {
 
 $(document).ready(function () {
 
-// bind filter button click
+    $('.freimaurer').show();
+    $(".freimaurer-nav").show();
+
+    // bind filter button click
     var filterButtonGroup = $('.freimaurer-nav ul');
     filterButtonGroup.on('click', 'a', function () {
 

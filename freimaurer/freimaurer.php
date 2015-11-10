@@ -170,8 +170,6 @@ class Freimaurer
                     $org_width = $img_size[0];
                     $org_height = $img_size[1];
 
-
-
                     if($org_width == 1920 && $org_height == 1080) {
                         $big_img = $img_path;
                     } else {

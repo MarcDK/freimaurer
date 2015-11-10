@@ -56,24 +56,25 @@ $maurer = new Freimaurer();
 
 
 <section>
-    <article class="about">
+    <article>
         <h2>About Freimaurer</h2>
 
         <p>A responsive onepage gallery based on <strong>php</strong> and <strong>javascript</strong>.</p>
 
         <p>Just upload your image folders and the navigation and thumbnails are generated automattically. </p>
     </article>
-    <article class="installation">
+    <article>
         <h2>Installation</h2>
 
         <p></p>
         <ol>
+            <li>Place your image folders into the folder <em>/gallery/</em>.</li>
+            <li>Customize index.php to your needs.</li>
+            <li>Upload all files to your webserver.</li>
             <li>Make the folder <em>/freimaurer/cache</em> writeable.</li>
-            <li>Place your image folders into the folder <em>/gallery/</em></li>
-            <li>All files.</li>
         </ol>
     </article>
-    <article class="credits">
+    <article>
         <h2>credits</h2>
 
         <p>Freimaurer is based on following scripts:</p>
@@ -87,17 +88,18 @@ $maurer = new Freimaurer();
 
         <p>demo photo credits: copyright by <a href="http://marc.tv">Marc Tönsing</a>.</p>
     </article>
-    <article class="download">
+    <article>
         <h2>Download</h2>
 
         <p>Download Freimaurer at <a href="https://github.com/MarcDK/freimaurer">github</a>.</p>
     </article>
-    <article class="license">
+    <article>
         <h2>License</h2>
 
         <p>Freimaurer is licensed under the <a href="http://opensource.org/licenses/MIT">MIT license</a></p>
     </article>
 </section>
+
 
 <!--- Freimaurer PhotoSwipe HTML ---->
 <?php echo $maurer->getPhotoSwipeHTML(); ?>
