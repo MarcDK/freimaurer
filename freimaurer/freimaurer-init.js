@@ -70,7 +70,7 @@ function openGallery(index) {
         }
     };
 
-
+    
     var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
     gallery.init();
 }
@@ -212,7 +212,6 @@ $(document).ready(function () {
         event.preventDefault();
         setIndex();
         var index = $(this).data("index");
-        console.debug(index);
         openGallery(index);
     });
 
