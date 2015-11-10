@@ -17,12 +17,18 @@
 
 "use strict";
 
+function setIndex() {
+    $.each($(".freimaurer img:visible"), function (key, img) {
+        $(img).parent().attr('data-index', key);
+    });
+}
+
 function getItems() {
     var items = [];
 
     $.each($(".freimaurer img:visible"), function (key, img) {
 
-        $(img).parent().attr('data-index', key);
+
 
         var href = $(img).parent().attr('href'),
             size = $(img).parent().data('size').split('x'),
@@ -47,13 +53,11 @@ function getItems() {
     return items;
 }
 
-function openGallery(elem) {
+function openGallery(index) {
 
     var pswpElement = document.querySelectorAll('.pswp')[0];
 
     var items = getItems();
-
-    var index = $(elem).data("index");
 
     var options = {
         index: parseInt(index),
@@ -112,6 +116,37 @@ function colWidth(grid) {
 
     return columnWidth;
 }
+
+function parseHash() {
+    var hash = window.location.hash.substring(1),
+        params = {};
+
+    if(hash.length < 5) {
+        return params;
+    }
+
+    var vars = hash.split('&');
+    for (var i = 0; i < vars.length; i++) {
+        if(!vars[i]) {
+            continue;
+        }
+        var pair = vars[i].split('=');
+        if(pair.length < 2) {
+            continue;
+        }
+        params[pair[0]] = pair[1];
+    }
+
+    if(params.gid) {
+        params.gid = parseInt(params.gid, 10);
+    }
+
+    if(!params.hasOwnProperty('pid')) {
+        return params;
+    }
+    params.pid = parseInt(params.pid, 10);
+    return params;
+};
 
 var isIsotopeInit = false;
 
@@ -175,7 +210,10 @@ $(document).ready(function () {
 
     $(".freimaurer a").on('click', function (event) {
         event.preventDefault();
-        openGallery(this);
+        setIndex();
+        var index = $(this).data("index");
+        console.debug(index);
+        openGallery(index);
     });
 
     var navigation = responsiveNav(".nav-collapse", {
@@ -195,6 +233,15 @@ $(document).ready(function () {
     });
 
     $(".freimaurer img.lazy").unveil();
+
+
+    // Parse URL and open gallery if it contains #&pid=3&gid=1
+
+    var hashData = parseHash();
+    if(hashData.pid > 0 && hashData.gid > 0) {
+        setIndex();
+        openGallery(hashData.gid);
+    }
 
 });
 

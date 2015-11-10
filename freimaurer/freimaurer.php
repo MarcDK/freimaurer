@@ -16,7 +16,7 @@ class Freimaurer
     private $imgTypes = array('jpeg', 'jpg', 'png', 'gif'); // The extensions of Images that the plugin will read
     private $directory = "gallery";
     private $categoriesOrder = "byName"; //byDate, byDateReverse, byName, byNameReverse, random
-    private $imagesOrder = "random"; //byDate, byDateReverse, byName, byNameReverse, random
+    private $imagesOrder = "byDateReverse"; //byDate, byDateReverse, byName, byNameReverse, random
     private $output;
 
     private function toAscii($str, $replace = array(), $delimiter = '-')
@@ -198,7 +198,7 @@ class Freimaurer
             }
         }
 
-        shuffle($array_img_list);
+
 
         foreach ($array_img_list as $html_item) {
             $html .= $html_item;
