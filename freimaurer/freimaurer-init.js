@@ -238,7 +238,7 @@ $(document).ready(function () {
 
     var hashData = parseHash();
     if(hashData.pid > 0 && hashData.gid > 0) {
-        openGallery();
+        openGallery(hashData.gid);
     }
 
 });

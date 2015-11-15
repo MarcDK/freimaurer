@@ -252,3 +252,8 @@ article:nth-child(even) {
     font-size: 24px;
     content:"x";
 }
+
+.pswp__zoom-wrap {
+    will-change: auto !important;
+    -webkit-backface-visibility: visible !important;
+}

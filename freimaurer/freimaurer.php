@@ -170,10 +170,10 @@ class Freimaurer
                     $org_width = $img_size[0];
                     $org_height = $img_size[1];
 
-                    if($org_width == 1920 && $org_height == 1080) {
+                    if($org_width == 1280 && $org_height == 720) {
                         $big_img = $img_path;
                     } else {
-                        $big_img =  $path . 'freimaurer/thumb.php?src=' . $img_path_thumb . '&size=1920x1080crop=1';
+                        $big_img =  $path . 'freimaurer/thumb.php?src=' . $img_path_thumb . '&size=1280x720crop=1';
                     }
 
                     $item = "\n";

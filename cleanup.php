@@ -1,6 +1,6 @@
 <pre><?php
 
-class FilenameCleaner
+class thumbGenerator
 {
     private $directory = "gallery";
     private $thumb_directory = 'thumbnails';
@@ -16,11 +16,6 @@ class FilenameCleaner
         '™' => '',
         '®' => '',
         '  ' => ' ',
-        'ä' => 'ae',
-        'ü' => 'ue',
-        'ö' => 'oe',
-        'ä' => 'ae',
-        'ß' => 'ss',
     );
 
     public $directoryTree;
@@ -38,7 +33,12 @@ class FilenameCleaner
                     $fixed_value = $this->fixFilename($value);
 
                     rename($dir . DIRECTORY_SEPARATOR . $value, $dir . DIRECTORY_SEPARATOR . $fixed_value);
-                    echo $fixed_value.'<br>';
+
+                    if ($value != $this->thumb_directory) {
+                        $this->makeThumbDir($dir . DIRECTORY_SEPARATOR . $fixed_value);
+                    }
+                    $result[$value] = $this->readDir($dir . DIRECTORY_SEPARATOR . $fixed_value);
+
                 } else {
 
                     $fixed_value = $this->fixFilename($value);
@@ -49,6 +49,10 @@ class FilenameCleaner
 
                         $ext = pathinfo($fixed_value, PATHINFO_EXTENSION);
 
+                        if (!$this->endsWith($dir, $this->thumb_directory) && @$this->allowed[$ext]) {
+                            // $this->writeThumbnail($dir . DIRECTORY_SEPARATOR . $fixed_value, $dir . DIRECTORY_SEPARATOR . $this->thumb_directory . DIRECTORY_SEPARATOR . $fixed_value, 400);
+                            //$this->writeThumbnail($dir . DIRECTORY_SEPARATOR . $fixed_value, $dir . DIRECTORY_SEPARATOR . $this->thumb_directory . DIRECTORY_SEPARATOR . $fixed_value, 800);
+                        }
                     }
 
                 }
@@ -69,6 +73,32 @@ class FilenameCleaner
         // search forward starting from end minus needle length characters
         return $needle === "" || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== FALSE);
     }
+
+    public function makeThumbDir($dir)
+    {
+        /*
+        $path = $dir . DIRECTORY_SEPARATOR . $this->thumb_directory;
+
+        if (!file_exists($path)) {
+            mkdir($path, 0777);
+            echo "The directory $path was successfully created.<br>";
+        } else {
+            //echo "The directory $path exists.";
+        }
+        */
+    }
+
+    public function writeThumbnail($sourcePath, $destinationPath, $width = 400)
+    {
+        if (!file_exists($destinationPath)) {
+            $thumb = new Imagick($sourcePath);
+            $thumb->scaleImage($width, 0);
+            $thumb->writeImage($destinationPath);
+            echo "The thumbnail $destinationPath was written.<br>";
+            $thumb->destroy();
+        }
+    }
+
 
     public function fixFilename($filename)
     {
@@ -95,6 +125,6 @@ class FilenameCleaner
 }
 
 
-new FilenameCleaner('gallery');
+new thumbGenerator('gallery');
 
 
