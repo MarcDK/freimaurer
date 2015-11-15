@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- needed for mobile devices -->
-    <link rel="stylesheet" href="freimaurer_demo/freimaurer/css/freimaurer.css"/>
+    <link rel="stylesheet" href="freimaurer/css/freimaurer.css"/>
 
     <!-- jquery  -->
     <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js'></script>
@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/responsive-nav/1.0.39/responsive-nav.css"/>
 
     <!-- freimaurer -->
-    <script type="text/javascript" src='freimaurer_demo/freimaurer/freimaurer-init.js'></script>
+    <script type="text/javascript" src='freimaurer/freimaurer-init.js'></script>
 
 </head>
 <body>
@@ -40,7 +40,7 @@
 <!--- Freimaurer ---->
 
 <?php
-include('freimaurer_demo/freimaurer/freimaurer.php');
+include('freimaurer/freimaurer.php');
 $maurer = new Freimaurer();
 ?>
 
