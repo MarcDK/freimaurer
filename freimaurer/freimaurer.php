@@ -12,7 +12,6 @@ Author: Marc Tönsing
 
 class Freimaurer
 {
-    private $path = '/freimaurer_demo'; // The location of freimaurer on the server
     private $imgTypes = array('jpeg', 'jpg', 'png', 'gif'); // The extensions of Images that the plugin will read
     private $directory = "gallery";
     private $categoriesOrder = "byName"; //byDate, byDateReverse, byName, byNameReverse, random
@@ -36,9 +35,12 @@ class Freimaurer
     private function getFoldersList($directory)
     {
         $categoriesOrder = $this->categoriesOrder;
+
         if (!is_dir($directory)) {//If the parameter is a directory if not then just return
             return array();
         }
+
+
         $results = array();
         $handler = opendir($directory);
         while ($file = readdir($handler)) {
@@ -155,7 +157,6 @@ class Freimaurer
 
         $i = 0;
 
-
         $path = $_SERVER['REQUEST_URI'];
 
 
@@ -183,7 +184,7 @@ class Freimaurer
                     data-category="' . $this->toAscii($key) . '" rel="all" class="gallery" href="' . $big_img . '">';
                     $item .= "\n";
                     $item .= '<img width="265" height="150" src="freimaurer/img/loading.png" class="lazy"
-                    data-src="' . $path . 'freimaurer/thumb.php?src=' . $img_path_thumb . '&size=300x168?crop=1"
+                    data-original="' . $path . 'freimaurer/thumb.php?src=' . $img_path_thumb . '&size=300x168?crop=1"
                     data-src-retina="' . $path . 'freimaurer/thumb.php?src=' . $img_path_thumb . '&size=600x337?crop=1">';
                     $item .= "\n";
                     $item .= '</a>';
@@ -199,7 +200,6 @@ class Freimaurer
         }
 
 
-
         foreach ($array_img_list as $html_item) {
             $html .= $html_item;
         }
@@ -208,7 +208,7 @@ class Freimaurer
         return $html;
     }
 
-    public function __construct($directory = '')
+    public function __construct()
     {
         $directory = $this->directory;
 

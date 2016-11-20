@@ -1,5 +1,5 @@
 /*
- freimaurer 1.0
+ freimaurer 1.1
 
  author: Marc Tönsing
  website marc.tv/freimaurer
@@ -10,9 +10,8 @@
 
  isotope         http://isotope.metafizzy.co/
  photoswipe      http://photoswipe.com/
- unveil          http://luis-almeida.github.io/unveil/
+ lazyload        https://www.appelsiini.net/projects/lazyload
  Thumb           http://github.com/jamiebicknell/Thumb
-
  */
 
 "use strict";
@@ -27,8 +26,6 @@ function getItems() {
     var items = [];
 
     $.each($(".freimaurer img:visible"), function (key, img) {
-
-
 
         var href = $(img).parent().attr('href'),
             size = $(img).parent().data('size').split('x'),
@@ -174,17 +171,17 @@ function onHashchange() {
         filter: hashFilter
     });
 
-    grid.on('layoutComplete', function () {
-        $(window).off("unveil");
-        $(".freimaurer img.lazy").unveil();
-    });
-
     var filterButtonGroup = $('.freimaurer-nav ul');
     // set selected class on button
     if (hashFilter) {
         filterButtonGroup.find('.active').removeClass('active');
         filterButtonGroup.find('[data-filter="' + hashFilter.replace('.', '') + '"]').addClass('active');
+
     }
+
+    grid.on('layoutComplete', function () {
+        $(".freimaurer img.lazy").lazyload();
+    });
 
 }
 
@@ -231,16 +228,13 @@ $(document).ready(function () {
         close: function(){}               // Function: Close callback
     });
 
-    $(".freimaurer img.lazy").unveil();
-
+    $(".freimaurer img.lazy").lazyload();
 
     // Parse URL and open gallery if it contains #&pid=3&gid=1
-
     var hashData = parseHash();
     if(hashData.pid > 0 && hashData.gid > 0) {
         openGallery(hashData.gid);
     }
-
 });
 
 
